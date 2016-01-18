@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CdLibs</string>
+    <string name="key">key</string>
+
 </resources>
