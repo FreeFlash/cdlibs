@@ -1,4 +1,4 @@
-package com.march.libs;
+package com.march.libs.base;
 
 import android.content.Context;
 import android.support.v7.app.AppCompatDialog;
