@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.march.libs.helper.LL;
+import com.march.libs.utils.LUtils;
 
 import java.util.List;
 
@@ -94,7 +94,7 @@ public abstract class QuickTypeAdapter<T extends QuickInterface>
         /* get the type*/
         int type = datas.get(position).getType();
         if (convertView == null) {
-            LL.i("chendong", "type is " + type + "  pos is  " + position);
+            LUtils.i("chendong", "type is " + type + "  pos is  " + position);
             int resId = Res4Type.get(type).getResId();
             convertView = layoutInflater.inflate(resId, parent, false);
             holder = new ViewHolder(convertView, Res4Type.get(type)

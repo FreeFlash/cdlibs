@@ -1,4 +1,4 @@
-package com.march.libs.helper;
+package com.march.libs.utils;
 
 import android.util.Log;
 
@@ -7,7 +7,7 @@ import android.util.Log;
  * Created by 陈栋 on 16/1/2.
  * 功能:日志打印工具类
  */
-public final class LL {
+public final class LUtils {
     //debug开关
     private static final boolean DEBUG = true;
     //默认tag

@@ -9,9 +9,16 @@ import android.app.Application;
  */
 public class BaseApplication extends Application {
 
+    private static BaseApplication mInstApp;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        mInstApp = this;
+    }
+
+    public static BaseApplication getInst() {
+        return mInstApp;
     }
 
 }
