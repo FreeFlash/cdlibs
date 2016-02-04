@@ -37,7 +37,6 @@ public abstract class QuickTypeAdapter<T extends QuickInterface>
         super();
         this.layoutInflater = LayoutInflater.from(context);
         this.datas = datas;
-        this.Res4Type = Res4Type;
         this.context = context;
     }
 
@@ -59,6 +58,10 @@ public abstract class QuickTypeAdapter<T extends QuickInterface>
         return datas;
     }
 
+    /**
+     * 切换数据源
+     * @param datas
+     */
     public void swapData(List<T> datas) {
         this.datas = datas;
         notifyDataSetChanged();
