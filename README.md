@@ -1,6 +1,6 @@
 #chendong libs
 
-<a herf="https://github.com/chendongMarch/CdLibsTest">测试代码链接</a>
+[https://github.com/chendongMarch/CdLibsTest](x)   点击查看demo代码
 
 ##ListView快速Adapter
 
