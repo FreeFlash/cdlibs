@@ -30,7 +30,6 @@ public class ViewHolder {
         cacheViews = new SparseArray<View>(viewCount);
     }
 
-
     public View getParentView() {
         return itemView;
     }
@@ -76,7 +75,7 @@ public class ViewHolder {
         return view;
     }
 
-    public ViewHolder setIsVisiable(int resId, int visiable) {
+    public ViewHolder setVisibility(int resId, int visiable) {
         getView(resId).setVisibility(visiable);
         return this;
     }
@@ -151,7 +150,7 @@ public class ViewHolder {
         getView(resId).setOnClickListener(onClickListener);
         return this;
     }
-/***********imageview*****************************/
+    /***********imageview*****************************/
     /**
      * 为ImageView使用图片资源id设置图片
      *

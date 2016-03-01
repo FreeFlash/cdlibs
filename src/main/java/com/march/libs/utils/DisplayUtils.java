@@ -3,6 +3,8 @@ package com.march.libs.utils;
 import android.content.Context;
 import android.view.View;
 
+import com.march.libs.base.BaseApplication;
+
 /**
  * CdLibsTest     com.march.libs.utils
  * Created by 陈栋 on 16/1/18.
@@ -10,11 +12,25 @@ import android.view.View;
  */
 public class DisplayUtils {
 
+    /**
+     * 在代码中使用dp做单位
+     *
+     * @param context
+     * @param dpValue
+     * @return
+     */
     public static int dp2px(Context context, float dpValue) {
         float density = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * density + 0.5f);
     }
 
+    /**
+     * 代码中使用sp做单位
+     *
+     * @param context
+     * @param spValue
+     * @return
+     */
     public static int sp2px(Context context, float spValue) {
         final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
@@ -33,13 +49,19 @@ public class DisplayUtils {
     }
 
     /**
-     * 3.获取屏幕宽像素
-     *
-     * @param context
+     * 屏幕宽度
      * @return
      */
-    public static final int getWidthPixels(Context context) {
-        return context.getResources().getDisplayMetrics().widthPixels;
+    public static int getSceenWidth() {
+        return BaseApplication.getInst().mScreenWidth;
+    }
+
+    /**
+     * 屏幕高度
+     * @return
+     */
+    public static int getSceenHeight() {
+        return BaseApplication.getInst().mScreenHeight;
     }
 
     /**

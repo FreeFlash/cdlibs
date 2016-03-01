@@ -7,20 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.march.libs.utils.LUtils;
-
 import java.util.List;
 
 /**
- * version 2<br/>
- * if max(type value) is n<br/>
- * then type value must between 0 - (n-1)<br/>
- * here use templete method,you can implement the method in this subclass<br/>
- * 抽象适配器升级版，可以进行分类适配，使用了模板方法模式，将设置item显示内容的部分抽象到了类外<br/>
- *
- * @param <T> <br/>必须实现MultiEasyAdapterInterface接口{@link QuickInterface}<br/>
- *            <br/>the data must be implement the interface QuickInterface{@link QuickInterface}
  * @author chendong
+ *
+ * @描述 分类型适配器,创建实体之后,调用addType()方法实现初始化
  */
 public abstract class QuickTypeAdapter<T extends QuickInterface>
         extends BaseAdapter {
@@ -97,7 +89,6 @@ public abstract class QuickTypeAdapter<T extends QuickInterface>
         /* get the type*/
         int type = datas.get(position).getType();
         if (convertView == null) {
-            LUtils.i("chendong", "type is " + type + "  pos is  " + position);
             int resId = Res4Type.get(type).getResId();
             convertView = layoutInflater.inflate(resId, parent, false);
             holder = new ViewHolder(convertView, Res4Type.get(type)
@@ -132,12 +123,16 @@ public abstract class QuickTypeAdapter<T extends QuickInterface>
     public abstract void bindListener4View(ViewHolder holder, T data, int type, int pos);
 
 
+    /**
+     *
+     * @param type 数据的类型(如果有n种类型,那么type的值需要是0 ~ n-1)
+     * @param resId 该类型对应的资源文件的id
+     * @return
+     */
     public QuickTypeAdapter addType(int type, int resId) {
         if (this.Res4Type == null)
             this.Res4Type = new SparseArray<>();
         this.Res4Type.put(type, new AdapterConfig(type, resId));
         return this;
     }
-
-
 }

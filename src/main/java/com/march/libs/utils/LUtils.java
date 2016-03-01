@@ -13,39 +13,45 @@ public final class LUtils {
     //默认tag
     private static final String TAG = "chendong";
 
-    public static final void i(String tag, String msg) {
+    public static final void i(String tag, Object msg) {
         if (DEBUG) {
             if (tag == null)
-                Log.i(TAG, msg);
+                Log.i(TAG, msg.toString());
             else
-                Log.i(tag, msg);
+                Log.i(tag, msg.toString());
         }
     }
 
-    public static final void w(String tag, String msg) {
+    public static final void i(Object msg) {
         if (DEBUG) {
-            if (tag == null)
-                Log.i(TAG, msg);
-            else
-                Log.i(tag, msg);
+            Log.i(TAG, msg.toString());
         }
     }
 
-    public static final void v(String tag, String msg) {
+    public static final void w(String tag, Object msg) {
         if (DEBUG) {
             if (tag == null)
-                Log.i(TAG, msg);
+                Log.i(TAG, msg.toString());
             else
-                Log.i(tag, msg);
+                Log.i(tag, msg.toString());
         }
     }
 
-    public static final void d(String tag, String msg) {
+    public static final void v(String tag, Object msg) {
         if (DEBUG) {
             if (tag == null)
-                Log.i(TAG, msg);
+                Log.i(TAG, msg.toString());
             else
-                Log.i(tag, msg);
+                Log.i(tag, msg.toString());
+        }
+    }
+
+    public static final void d(String tag, Object msg) {
+        if (DEBUG) {
+            if (tag == null)
+                Log.i(TAG, msg.toString());
+            else
+                Log.i(tag, msg.toString());
         }
     }
 

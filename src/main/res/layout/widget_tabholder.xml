@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/widget_tabholder_holder"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_gravity="bottom"
+    android:background="@color/tab_gray"
+    android:orientation="horizontal"
+    app:divider="@drawable/shape_line"
+    app:dividerPadding="12dp"
+    app:showDividers="middle"/>
+

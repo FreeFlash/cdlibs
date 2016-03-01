@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent">#0000</color>
+    <color name="transparent_gray">#9ddd</color>
+    <color name="light_gray">#aaa</color>
+    <color name="tab_gray">#ddd</color>
+</resources>

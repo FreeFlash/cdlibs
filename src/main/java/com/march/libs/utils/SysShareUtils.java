@@ -13,7 +13,28 @@ import java.util.List;
 /**
  * CdLibsTest     com.march.libs.utils
  * Created by 陈栋 on 16/2/2.
- * 功能:
+ * 功能:调起系统分享的功能,使用下面的IntentFilter可以使Activity在分享时被调起
+ * <intent-filter>
+ * <action android:name="android.intent.action.SEND"/>
+ * <p/>
+ * <category android:name="android.intent.category.DEFAULT"/>
+ * <p/>
+ * <data android:mimeType="image/*"/>
+ * </intent-filter>
+ * <intent-filter>
+ * <action android:name="android.intent.action.SEND"/>
+ * <p/>
+ * <category android:name="android.intent.category.DEFAULT"/>
+ * <p/>
+ * <data android:mimeType="text/plain"/>
+ * </intent-filter>
+ * <intent-filter>
+ * <action android:name="android.intent.action.SEND_MULTIPLE"/>
+ * <p/>
+ * <category android:name="android.intent.category.DEFAULT"/>
+ * <p/>
+ * <data android:mimeType="image/*"/>
+ * </intent-filter>
  */
 public class SysShareUtils {
 
@@ -70,4 +91,6 @@ public class SysShareUtils {
         shareIntent.setType("image/*");
         context.startActivity(Intent.createChooser(shareIntent, "分享到"));
     }
+
+
 }
