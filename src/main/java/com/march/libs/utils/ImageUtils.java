@@ -1,13 +1,21 @@
 package com.march.libs.utils;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * CdLibsTest     com.march.libs.utils
@@ -53,7 +61,6 @@ public class ImageUtils {
     }
 
 
-
     public static byte[] bitmap2Bytes(Bitmap bm) {
         if (bm == null) {
             return null;
@@ -65,5 +72,34 @@ public class ImageUtils {
 
     public static Bitmap bytes2Bitmap(byte[] bytes) {
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+    }
+
+    public static boolean saveBit2Sd(Context context, Bitmap bitmap, File file, int quality) {
+        if (bitmap != null) {
+
+            File parentFile = file.getParentFile();
+            if (!parentFile.exists()) {
+                file.mkdirs();
+            }
+
+            BufferedOutputStream bos = null;
+            try {
+                bos = new BufferedOutputStream(new FileOutputStream(file));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, bos);
+            if (bos != null) {
+                try {
+                    bos.flush();
+                    bos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + file.getPath())));
+            return true;
+        }
+        return false;
     }
 }

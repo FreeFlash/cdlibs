@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.march.libs.utils.ActAnimUtils;
 import com.march.libs.utils.LUtils;
@@ -32,14 +33,46 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //全屏显示
+        if (isFullScreen()) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
         setContentView(getLayoutId());
+        //隐藏actionbar
+        if (isNoActionBar()) {
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().hide();
+            }
+            if (getActionBar() != null) {
+                getActionBar().hide();
+            }
+        }
         ButterKnife.bind(this);
         self = this;
         gestureDetector = new GestureDetector(self, new DiyGestureListener(), null, true);
+        initViews();
+        initEvents();
     }
 
-    public abstract int getLayoutId();
+    protected void initViews() {
+    }
 
+    protected void initEvents() {
+    }
+
+    protected abstract int getLayoutId();
+
+    protected boolean isFullScreen() {
+        return false;
+    }
+
+    protected boolean isNoActionBar() {
+        return false;
+    }
+
+    protected String str(Object obj){
+        return String.valueOf(obj);
+    }
 
     /**
      * 获取跳换使用的Intent,避免使用过多引用

@@ -16,6 +16,7 @@ public class FileUtils {
 
     /**
      * 获取根目录下的uniqueName目录
+     *
      * @param context
      * @param uniqueName
      * @return
@@ -25,16 +26,42 @@ public class FileUtils {
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
                 || !Environment.isExternalStorageRemovable()) {
             cachePath = Environment.getExternalStorageDirectory().getAbsolutePath();
-//            cachePath = context.getExternalCacheDir().getPath();
         } else {
             cachePath = context.getCacheDir().getPath();
         }
-        return new File(cachePath + File.separator + uniqueName);
+        File file = null;
+
+        if (uniqueName != null)
+            file = new File(cachePath + File.separator + uniqueName);
+        else
+            file = new File(cachePath);
+
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        return file;
+    }
+
+
+    public static File getDcimDir(String uniqueName) {
+        // 设置拍摄视频缓存路径
+        try {
+            File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), uniqueName);
+            if (!file.exists()) {
+                file.mkdirs();
+            }
+            return file;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+
     }
 
 
     /**
      * 字节数组生成字符串
+     *
      * @param bytes
      * @return
      */
@@ -53,6 +80,7 @@ public class FileUtils {
 
     /**
      * 获取唯一md5编码文件名
+     *
      * @param key
      * @return
      */
