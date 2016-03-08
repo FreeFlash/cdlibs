@@ -7,10 +7,8 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-
 import com.march.libs.utils.ActAnimUtils;
 import com.march.libs.utils.LUtils;
-
 import butterknife.ButterKnife;
 
 /**
@@ -24,7 +22,7 @@ import butterknife.ButterKnife;
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
-    protected Intent jumpIntent;
+    protected Intent jumpIntent;//跳转Intent
     protected boolean isForward;//Activity是否在前台
     protected BaseActivity self;//当前Activity的引用
     protected GestureDetector gestureDetector;//手势操作
@@ -186,7 +184,6 @@ public abstract class BaseActivity extends AppCompatActivity {
                 }
                 return true;
             }
-
             return false;
         }
     }
@@ -219,13 +216,13 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 
     protected void setVisible(View view) {
-        if (!view.isShown()) {
+        if (view!=null&&!view.isShown()) {
             view.setVisibility(View.VISIBLE);
         }
     }
 
     protected void setGone(View view) {
-        if (view.isShown()) {
+        if (view!=null&&view.isShown()) {
             view.setVisibility(View.GONE);
         }
     }
