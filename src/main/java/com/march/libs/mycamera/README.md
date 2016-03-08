@@ -175,6 +175,7 @@ public void doStopFastPic()
 
 ##图片处理API
 ```java
+//在外部处理byte数组,返回bitmap
 public Bitmap handlePicData(boolean isFast, byte[] data, int sampleSize)
 ```
 
@@ -183,7 +184,7 @@ public Bitmap handlePicData(boolean isFast, byte[] data, int sampleSize)
 ```java
 //由于存储照片是异步的，拍摄完毕之后需要调用doTakePicOver()方法，并在OnSaveOver()回调中执行相关操作
 doTakePicOver()
-//
+//停止照片自定旋转,横屏拍摄的照片将不会自动横向显示
 public void shutDownAutoRotate() 
 ```
 
