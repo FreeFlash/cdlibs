@@ -40,10 +40,10 @@ public class ViewHolder {
      * @param resId
      * @return
      */
-    public View getView(int resId) {
-        View v = cacheViews.get(resId);
+    public <T extends View> T getView(int resId) {
+        T v = (T) cacheViews.get(resId);
         if (v == null) {
-            v = itemView.findViewById(resId);
+            v = (T) itemView.findViewById(resId);
             if (v != null) {
                 cacheViews.put(resId, v);
             }

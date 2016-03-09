@@ -7,8 +7,10 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+
 import com.march.libs.utils.ActAnimUtils;
 import com.march.libs.utils.LUtils;
+
 import butterknife.ButterKnife;
 
 /**
@@ -48,8 +50,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         self = this;
         gestureDetector = new GestureDetector(self, new DiyGestureListener(), null, true);
+        initDatas();
         initViews();
         initEvents();
+    }
+
+    protected void initDatas() {
     }
 
     protected void initViews() {
@@ -68,7 +74,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         return false;
     }
 
-    protected String str(Object obj){
+    protected String str(Object obj) {
         return String.valueOf(obj);
     }
 
@@ -216,13 +222,13 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 
     protected void setVisible(View view) {
-        if (view!=null&&!view.isShown()) {
+        if (view != null && !view.isShown()) {
             view.setVisibility(View.VISIBLE);
         }
     }
 
     protected void setGone(View view) {
-        if (view!=null&&view.isShown()) {
+        if (view != null && view.isShown()) {
             view.setVisibility(View.GONE);
         }
     }

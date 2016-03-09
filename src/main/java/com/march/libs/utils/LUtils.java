@@ -55,4 +55,12 @@ public final class LUtils {
         }
     }
 
+    public static void e(String tag, String msg) {
+        if (DEBUG) {
+            if (tag == null)
+                Log.i(TAG, msg.toString());
+            else
+                Log.i(tag, msg.toString());
+        }
+    }
 }
