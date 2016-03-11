@@ -83,7 +83,15 @@ public class CameraSurfaceView extends SurfaceView implements SurfaceHolder.Call
                     }
                 }
             }.execute();
+        } else {
+            CameraNative.getInst().initSurfaceHolder();
+            CameraNative.getInst().initCamera();
+            if (onCameraSurfaceListener != null) {
+                onCameraSurfaceListener.afterCreate();
+            }
+
         }
+
     }
 
     @Override
@@ -94,7 +102,7 @@ public class CameraSurfaceView extends SurfaceView implements SurfaceHolder.Call
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
         Log.i(tag, "---surfaceDestroyed---");
-        CameraNative.getInst().releaseCamera();
+//        CameraNative.getInst().releaseCamera();
     }
 
 

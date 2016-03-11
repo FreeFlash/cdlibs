@@ -86,7 +86,6 @@ public class CameraNative {
     }
 
 
-
     /**
      * 私有化构造方法
      */
@@ -311,11 +310,11 @@ public class CameraNative {
     /**
      * 控制图像的正确显示方向
      */
-    private void setDispaly(Camera.Parameters parameters, Camera camera) {
-        if (Build.VERSION.SDK_INT >= 23 && mCurrentCameraId == 1) {
-            setDisplayOrientation(camera, 270);
+    private void setDispaly(Camera.Parameters parameters) {
+        if (Build.VERSION.SDK_INT >= 23 && mCurrentCameraId == CAMERA_FACING_FRONT) {
+            setDisplayOrientation(270);
         } else if (Build.VERSION.SDK_INT >= 8) {
-            setDisplayOrientation(camera, 90);
+            setDisplayOrientation(90);
         } else {
             parameters.setRotation(90);
         }
@@ -325,16 +324,26 @@ public class CameraNative {
     /**
      * 实现的图像的正确显示
      */
-    private void setDisplayOrientation(Camera camera, int i) {
+    private void setDisplayOrientation(int i) {
         Method downPolymorphic;
         try {
-            downPolymorphic = camera.getClass().getMethod("setDisplayOrientation",
+            downPolymorphic = cameraInst.getClass().getMethod("setDisplayOrientation",
                     new Class[]{int.class});
             if (downPolymorphic != null) {
-                downPolymorphic.invoke(camera, new Object[]{i});
+                downPolymorphic.invoke(cameraInst, new Object[]{i});
             }
         } catch (Exception e) {
             Log.e("Came_e", "图像出错");
+        }
+    }
+
+
+    private void setFocusMode(Camera.Parameters para) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH && parameters.getSupportedFocusModes()
+                .contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
+            para.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);//1连续对焦
+        } else {
+            para.setFocusMode(Camera.Parameters.FOCUS_MODE_FIXED);
         }
     }
 
@@ -346,12 +355,8 @@ public class CameraNative {
         cameraInst.stopPreview();
         parameters = cameraInst.getParameters();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);//1连续对焦
-        } else {
-            parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
-        }
-        setDispaly(parameters, cameraInst);
+        setFocusMode(parameters);
+        setDispaly(parameters);
         List<int[]> supportedPreviewFpsRange = parameters.getSupportedPreviewFpsRange();
         int[] ints = supportedPreviewFpsRange.get(supportedPreviewFpsRange.size() - 1);
         parameters.setPreviewFpsRange(ints[0], ints[1]);
@@ -403,7 +408,7 @@ public class CameraNative {
                 areas.add(new Camera.Area(area1, 800));
                 parameters.setMeteringAreas(areas);
             }
-            parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+            setFocusMode(parameters);
         }
         cameraInst.setParameters(parameters);
     }
@@ -1137,7 +1142,6 @@ public class CameraNative {
         }
         Log.e(tag, msg);
     }
-
 
 
     private void autoFocus() {
