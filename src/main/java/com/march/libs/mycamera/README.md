@@ -5,7 +5,8 @@
 ```java
 //参数说明
 <declare-styleable name="CamContainerView">
-        <attr name="isShowTop" format="boolean"/>//是否在顶部显示遮挡
+        //是否在顶部显示遮挡,如果为true,切换到1:1时,会在顶部出现黑色遮挡物,如果为false,预览界面始终在屏幕顶端
+        <attr name="isShowTop" format="boolean"/>
 </declare-styleable>
 
 //xml实例
