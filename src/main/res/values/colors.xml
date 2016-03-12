@@ -4,4 +4,6 @@
     <color name="transparent_gray">#9ddd</color>
     <color name="light_gray">#aaa</color>
     <color name="tab_gray">#ddd</color>
+    <color name="white">#fff</color>
+    <color name="black">#000</color>
 </resources>

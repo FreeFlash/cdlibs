@@ -16,6 +16,7 @@ import android.view.SurfaceView;
 import android.widget.ImageView;
 
 import com.march.libs.utils.DisplayUtils;
+import com.march.libs.utils.FileUtils;
 import com.march.libs.utils.ImageUtils;
 import com.march.libs.utils.LUtils;
 import com.march.libs.utils.TUtils;
@@ -51,6 +52,7 @@ public class CameraNative {
 
     private Context context;
     private SurfaceView surfaceView;
+    private CamContainerView camContainerView;
     private static CameraNative cameraNative;
     private Handler handler;
 
@@ -89,11 +91,13 @@ public class CameraNative {
     /**
      * 私有化构造方法
      */
-    private CameraNative(Context context, SurfaceView surfaceView) {
+    private CameraNative(Context context, CamContainerView camContainerView) {
         this.context = context;
-        this.surfaceView = surfaceView;
+        this.surfaceView = camContainerView.getSurfaceView();
+        this.camContainerView = camContainerView;
         saveThread = Executors.newFixedThreadPool(2);
         handler = new Handler();
+        saveDir = FileUtils.getDcimDir("chendong");
 //        int mode = SPUtils.get().getCameraDefaultMode();
 //        if (mode == -1) {
 //            setTakeMode(CameraNative.Mode_PIC);
@@ -108,11 +112,11 @@ public class CameraNative {
      * @param context
      * @return
      */
-    public static void newInst(Context context, SurfaceView surfaceView) {
+    public static void newInst(Context context, CamContainerView camContainerView) {
         if (cameraNative == null) {
             synchronized (CameraNative.class) {
                 if (cameraNative == null) {
-                    cameraNative = new CameraNative(context, surfaceView);
+                    cameraNative = new CameraNative(context, camContainerView);
                 }
             }
         }
@@ -181,6 +185,7 @@ public class CameraNative {
         } else {
             this.mCurrentSize = size;
         }
+        camContainerView.changeDisplayUI();
     }
 
     /**
@@ -560,8 +565,13 @@ public class CameraNative {
      * @param res      on auto off
      */
     public void toogleLightWithAuto(ImageView flashBtn, int... res) {
+        if (mCurrentCameraId == CAMERA_FACING_FRONT) {
+            printError("facing front camera not support change flash mode");
+            return;
+        }
         if (cameraInst == null || cameraInst.getParameters() == null
                 || cameraInst.getParameters().getSupportedFlashModes() == null) {
+            printError("camera not init over");
             return;
         }
 
@@ -1134,7 +1144,6 @@ public class CameraNative {
     public void setOnSavePicListener(OnSavePicListener mOnSavePicListener) {
         this.mOnSavePicListener = mOnSavePicListener;
     }
-
 
     private void printError(String msg) {
         if (mOnErrorListener != null) {

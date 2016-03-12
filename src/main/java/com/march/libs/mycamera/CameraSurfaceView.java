@@ -55,7 +55,6 @@ public class CameraSurfaceView extends SurfaceView implements SurfaceHolder.Call
     private void initSurfaceView() {
         getHolder().addCallback(this);
         handler = new Handler();
-        CameraNative.newInst(getContext(), this);
         setOnClickListener(this);
         setOnTouchListener(this);
     }
