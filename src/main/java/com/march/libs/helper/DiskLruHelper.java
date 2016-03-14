@@ -12,9 +12,9 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 import com.jakewharton.disklrucache.DiskLruCache;
-import com.march.libs.utils.AppUtils;
-import com.march.libs.utils.FileUtils;
-import com.march.libs.utils.ImageUtils;
+import com.march.rapiddevelibs.utils.AppUtils;
+import com.march.rapiddevelibs.utils.FileUtils;
+import com.march.rapiddevelibs.utils.ImageUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -91,7 +91,7 @@ public class DiskLruHelper {
                     dir + " is not a directory or does not exists. ");
         }
 
-        int appVersion = context == null ? DEFAULT_APP_VERSION : AppUtils.getAppVersion(context);
+        int appVersion = context == null ? DEFAULT_APP_VERSION : AppUtils.getAppVersion();
 
         try {
             return DiskLruCache.open(

@@ -11,9 +11,9 @@ import android.hardware.Camera.Size;
 import android.util.Log;
 
 import com.march.libs.camera.util.CamParaUtil;
-import com.march.libs.camera.util.FileUtil;
 import com.march.libs.camera.util.CameraImageUtil;
-import com.march.libs.utils.LUtils;
+import com.march.libs.camera.util.FileUtil;
+import com.march.rapiddevelibs.utils.LUtils;
 
 import java.io.IOException;
 import java.util.List;

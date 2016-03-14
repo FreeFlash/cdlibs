@@ -2,6 +2,12 @@
 
 [https://github.com/chendongMarch/CdLibsTest](x)   点击查看demo代码
 
+##部分库的代码已经集成到新的库中,complile可用
+compile 'com.march.adapterlibs:adapterlibs:1.0.3'
+compile 'com.march.cameralibs:easycameralibs:1.0.2'
+compile 'com.march.rapiddevelibs:rapiddevelibs:1.0.5'
+
+
 ##ListView快速Adapter
 
 ##Activity,Application,Dialog基类

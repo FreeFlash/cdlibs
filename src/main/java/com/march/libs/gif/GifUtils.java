@@ -1,8 +1,8 @@
-package com.march.libs.utils;
+package com.march.libs.gif;
 
 import android.graphics.Bitmap;
 
-import com.march.libs.gif.AnimatedGifEncoder;
+
 import com.xingye.gif.GifUtil;
 
 
@@ -27,7 +27,7 @@ public class GifUtils {
     public void jpgToGif(boolean isC, Bitmap pic[],
                          String newPic, int duration) {
         if (pic == null) {
-            LUtils.e("gif", " pic is null ");
+//            LUtils.e("gif", " pic is null ");
             return;
         }
 

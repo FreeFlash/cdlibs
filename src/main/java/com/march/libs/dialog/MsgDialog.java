@@ -4,14 +4,14 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.march.libs.R;
-import com.march.libs.base.BaseDialog;
+import com.march.libs.base.BaseAppCompatDialog;
 
 /**
  * CdLibsTest     com.march.libs
  * Created by 陈栋 on 16/2/4.
  * 功能:
  */
-public class MsgDialog extends BaseDialog {
+public class MsgDialog extends BaseAppCompatDialog {
 
     public MsgDialog(Context context) {
         super(context, R.style.dialog);

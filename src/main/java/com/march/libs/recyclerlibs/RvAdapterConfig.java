@@ -1,4 +1,4 @@
-package com.march.libs.adapterlibs;
+package com.march.libs.recyclerlibs;
 
 /**
  * 存储类型信息的实体类
@@ -6,13 +6,13 @@ package com.march.libs.adapterlibs;
  * @author chendong
  * @功能：分类适配器配置信息实体类,包内访问
  */
-class AdapterConfig {
+class RvAdapterConfig {
 
     /**
      * @param type  item类型，int类型变量，Item是什么类型的就填写什么类型
      * @param resId 资源id，对应类型的资源id，你需要装载的资源文件的ID
      */
-    public AdapterConfig(int type, int resId) {
+    public RvAdapterConfig(int type, int resId) {
         super();
         this.type = type;
         this.resId = resId;
